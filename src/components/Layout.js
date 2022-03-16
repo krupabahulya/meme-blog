@@ -19,7 +19,7 @@ import { Outlet, NavLink } from 'react-router-dom'
             <NavLink className="nav-link" to='/'>Home</NavLink>
         </li>
                <li className="nav-item">
-                    <NavLink className="nav-link" to='/new-meme'>Create Meme</NavLink>
+                    <NavLink className="nav-link" to='/createMeme'>Create Meme</NavLink>
                 </li>
                 <li className="nav-item">
                     <NavLink className="nav-link" to='/about'>About</NavLink>

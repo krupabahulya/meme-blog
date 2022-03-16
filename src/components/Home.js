@@ -1,6 +1,7 @@
 import React from "react";
 import { client } from "./client";
 import Posts from "./Posts";
+import Sidenavbar from "./Sidenavbar";
 
 class Home extends React.Component {
   state = {
@@ -30,7 +31,9 @@ class Home extends React.Component {
           </header>
           <main>
             <div className="wrapper">
+            <Sidenavbar Sidenavbar = {Sidenavbar} />
               <Posts posts={this.state.articles} />
+              
             </div>
           </main>
         </div>

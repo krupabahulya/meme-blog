@@ -1,38 +1,47 @@
 import React from "react";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Meme = () => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
+  useEffect(() => {
+    if (selectedImage) {
+      setImageUrl(URL.createObjectURL(selectedImage));
+    }
+  }, [selectedImage]);
+
+  console.log(selectedImage);
+
   return (
     <div>
       <h2>Create a meme</h2>
       <form>
         <input
-          accept="image/*"
           type="file"
           id="select-image"
-          style={{ display: "none" }}
           onChange={(e) => setSelectedImage(e.target.files[0])}
         />
-        <label>
-          <button variant="contained" color="primary" component="span">
-            Upload Image
-          </button>
-        </label>
-        <input type="text" value="Title" /> <br />
+        {imageUrl && selectedImage && (
+          <>
+            <div>Image Preview:</div>
+            <img src={imageUrl} alt={selectedImage.name} height="100px" />
+          </>
+        )}{" "}
+        <br />
+        <input type="text" placeholder="Title..." /> <br />
         <label>Category</label>
         <select id="memes" name="memes">
-          <option value="trending">trending</option>
-          <option value="classics">classics</option>
-          <option value="animals">animals</option>
-          <option value="crypto">crypto</option>
-          <option value="cooking">cooking</option>
-          <option value="relationship">relationship</option>
+          <option>trending</option>
+          <option>classics</option>
+          <option>animals</option>
+          <option>crypto</option>
+          <option>cooking</option>
+          <option>relationship</option>
         </select>{" "}
         <br />
-        <input type="text" value="Author" /> <br />
-        <input type="Submit" value="Submit" />
+        <input type="text" placeholder="Author..." /> <br />
+        <input type="Submit" defaultValue="Submit" />
       </form>
     </div>
   );

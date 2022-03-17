@@ -17,11 +17,6 @@ const Sidenavbar = () => {
                      <li><a href="#">relationship</a></li>
                     </ul>
                   </nav>
-                   <ul className="social-links list-inline unstyled list-hover-slide">
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Privacy</a></li>
-                    <div>Copyright &copy; memeASK</div>
-                   </ul>
                </div>
         </div>
     )

@@ -18,6 +18,7 @@ const Sidenavbar = ({ article }) => {
                      <li><a href="#">cooking</a></li>
                      <li><a href="#">relationship</a></li>
                     </ul>
+<<<<<<< HEAD
                   </nav> */}
 
 
@@ -26,6 +27,10 @@ const Sidenavbar = ({ article }) => {
 </div>
 
 
+=======
+                  </nav>
+                 
+>>>>>>> repo/main
                </div>
         </div>
     )

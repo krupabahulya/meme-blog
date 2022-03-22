@@ -17,6 +17,7 @@ const Sidenavbar = () => {
                      <li><a href="#">relationship</a></li>
                     </ul>
                   </nav>
+                 
                </div>
         </div>
     )

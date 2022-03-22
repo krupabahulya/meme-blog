@@ -24,17 +24,16 @@ import { Outlet, NavLink } from 'react-router-dom'
                 <li className="nav-item">
                     <NavLink className="nav-link" to='/about'>About</NavLink>
                 </li>
+                <li className="nav-item">
+                    <NavLink className="nav-link" to='/contact'>Contact</NavLink>
+                </li>
     </ul>
     </div>
   </div>
  </nav>
         <Outlet />
         <footer>
-        <ul className="social-links list-inline unstyled list-hover-slide">
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Privacy</a></li>
-                    <div>Copyright &copy; memeASK</div>
-                   </ul>
+        
         </footer>
     </div>
   )

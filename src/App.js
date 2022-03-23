@@ -1,8 +1,9 @@
-import { Route, Routes, NavLink } from 'react-router-dom';
+import { Route, Routes, } from 'react-router-dom';
 import Layout from './components/Layout'
 import Home from './components/Home'
 import Meme from './components/MemeForm'
 import Contact from './components/Contact';
+
 
 
 const App = () => {
@@ -13,6 +14,7 @@ const App = () => {
           <Route index element={<Home />}/>
           <Route path='/createMeme' element={<Meme />}/>
           <Route path='/contact' element={<Contact/>}/>
+          
           <Route path='*' element={<div>NotFound</div>}/>
         </Route>
       </Routes>

@@ -21,9 +21,7 @@ import { Outlet, NavLink } from 'react-router-dom'
                <li className="nav-item">
                     <NavLink className="nav-link" to='/createMeme'>Create Meme</NavLink>
                 </li>
-                <li className="nav-item">
-                    <NavLink className="nav-link" to='/about'>About</NavLink>
-                </li>
+                
                 <li className="nav-item">
                     <NavLink className="nav-link" to='/contact'>Contact</NavLink>
                 </li>

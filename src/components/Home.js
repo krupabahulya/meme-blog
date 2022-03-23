@@ -22,22 +22,19 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="container">
-          <header>
-            <div className="wrapper">
-              <span>Meme Blog</span>
-            </div>
-          </header>
-          <main>
-            <div className="wrapper">
-            <Sidenavbar Sidenavbar = {Sidenavbar} />
-              <Posts posts={this.state.articles} />
-              
-            </div>
-          </main>
-        </div>
-      </div>
+
+<div className="d-flex row">
+
+    <Sidenavbar Sidenavbar = {Sidenavbar} />
+
+  <div className="d-flex row">
+  <div className="p-2">
+  <div className="d-flex flex-row">
+    <Posts posts={this.state.articles} />
+   </div>
+</div>
+</div>
+</div>
     );
   }
 }

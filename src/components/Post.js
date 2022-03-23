@@ -6,10 +6,10 @@ const Post = ({ article }) => {
   const { title, image, author, categories } = article.fields;
   return (
 <div className="row">
-  <div className="col-sm-6">
+  <div className="col mx-3 col-sm-6">
     <div className="card mb-3" style={{width: 250}}>
   <h3 className="card-header">{title}</h3>
-  <img src={image.fields.file.url} className="d-block user-select-none" width="100%" max_height="200" />
+  <img src={image.fields.file.url} className="d-block user-select-none" width="100%" height="300" />
   <div className="card-body">
     <h6 className="card-subtitle text-muted">posted by {author}</h6>
   </div>

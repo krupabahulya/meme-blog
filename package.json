@@ -11,6 +11,7 @@
     "boostrap": "^2.0.0",
     "bootstrap-icons": "^1.8.1",
     "contentful": "^9.1.18",
+    "contentful-management": "^8.2.2",
     "cors": "^2.8.5",
     "dom": "^0.0.3",
     "pigeon-maps": "^0.21.0",

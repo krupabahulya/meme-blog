@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { createClient } from "contentful-management";
 
 export default function App() {
@@ -7,10 +7,29 @@ export default function App() {
   const accessToken = "CFPAT-I1gQhnaX5mx-FhN7WPL-Y7Gd6UB-QKWS6GB9v2IBYIA";
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [uploadedImage, setUploadedImage] = useState(null);
-  const [title, setTitle] = useState(null);
-  const [categories, setCategories] = useState(null);
-  const [author, setAuthor] = useState(null);
+  const [uploadedImage] = useState(null);
+  const [{ title, author, categories }, setFormState] = useState({
+    title: "",
+    author: "",
+    categories: [],
+  });
+
+  const handleChange = (e) => {
+    if (e.target.nodeName === "SELECT") {
+      setFormState((prev) => ({
+        ...prev,
+        [e.target.name]: Array.from(
+          e.target.selectedOptions,
+          (option) => option.value
+        ),
+      }));
+    } else {
+      setFormState((prev) => ({
+        ...prev,
+        [e.target.name]: e.target.value,
+      }));
+    }
+  };
 
   const uploadImage = async (e) => {
     try {
@@ -23,31 +42,14 @@ export default function App() {
       const fileContents = await file.arrayBuffer();
       const space = await client.getSpace(spaceID);
       const environment = await space.getEnvironment("master");
-      //create entry
-      let entry = await environment.createEntry("post", {
-        fields: {
-          author: {
-            "en-US": `${author}`,
-          },
-          categories: {
-            "en-US": `${categories}`,
-          },
-
-          title: {
-            "en-US": `${title}`,
-          },
-          image: {
-            "en-US": [],
-          },
-        },
-      });
-      // reassign `entry` to have the latest version number
-      entry = await entry.publish();
-
+      // Create asset
       const newAsset = await environment.createAssetFromFiles({
         fields: {
           title: {
             "en-US": `${file.name}-${crypto.randomUUID()}`,
+          },
+          description: {
+            "en-US": "Cat",
           },
           file: {
             "en-US": {
@@ -60,31 +62,36 @@ export default function App() {
       });
       const processedAsset = await newAsset.processForAllLocales();
       const publishedAsset = await processedAsset.publish();
-      setUploadedImage(publishedAsset.fields.file[`en-US`]);
-      /**
-       * Update entry with new asset
-       */
-      entry.fields["image"]["en-US"] = {
+      // Create entry
+      const entry = await environment.createEntry("post", {
         fields: {
-          file: {
-            url: {
-              "en-US": `${uploadedImage.url}`,
+          author: {
+            "en-US": author,
+          },
+          categories: {
+            "en-US": categories,
+          },
+          title: {
+            "en-US": title,
+          },
+          image: {
+            "en-US": {
+              sys: {
+                id: publishedAsset.sys.id,
+                linkType: "Asset",
+                type: "Link",
+              },
             },
           },
         },
-        /*  sys: {
-          id: asset.sys.id,
-          linkType: "Asset",
-          type: "Link",
-        }, */
-      };
-      entry = await entry.update();
-      entry = await entry.publish();
+      });
+      const publishedEntry = await entry.publish();
 
+      console.log(publishedEntry);
       setFile(null);
       setLoading(false);
     } catch (error) {
-      console.error(error);
+      console.log(error);
       setLoading(false);
     }
   };
@@ -97,29 +104,34 @@ export default function App() {
         <input
           type="text"
           placeholder="Title..."
-          onChange={(e) => setTitle(e.target.value)}
-        />{" "}
+          value={title}
+          name="title"
+          onChange={handleChange}
+        />
         <br />
         <input type="file" onChange={(e) => setFile(e.target.files[0])} />
         <label>Category</label>
         <select
-          id="memes"
-          name="memes"
-          onChange={(e) => setCategories(e.target.value)}
+          name="categories"
+          value={categories}
+          onChange={handleChange}
+          multiple
         >
-          <option>trending</option>
-          <option>classics</option>
-          <option>animals</option>
-          <option>crypto</option>
-          <option>cooking</option>
-          <option>relationship</option>
-        </select>{" "}
+          <option value="Trending">trending</option>
+          <option value="Classics">classics</option>
+          <option value="Animals">animals</option>
+          <option value="Crypto">crypto</option>
+          <option value="Cooking">cooking</option>
+          <option value="Relationship">relationship</option>
+        </select>
         <br />
         <input
           type="text"
           placeholder="Author..."
-          onChange={(e) => setAuthor(e.target.value)}
-        />{" "}
+          value={author}
+          name="author"
+          onChange={handleChange}
+        />
         <br />
         <input type="submit" value="Upload" />
       </form>

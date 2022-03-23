@@ -5,6 +5,7 @@ import Meme from './components/MemeForm'
 import Contact from './components/Contact';
 
 
+
 const App = () => {
   return (
     <div className="App">
@@ -13,6 +14,7 @@ const App = () => {
           <Route index element={<Home />}/>
           <Route path='/createMeme' element={<Meme />}/>
           <Route path='/contact' element={<Contact/>}/>
+          
           <Route path='*' element={<div>NotFound</div>}/>
         </Route>
       </Routes>

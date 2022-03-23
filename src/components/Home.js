@@ -2,6 +2,7 @@ import React from "react";
 import { client } from "./client";
 import Posts from "./Posts";
 import Sidenavbar from "./Sidenavbar";
+import DropMenu from "./Dropdown";
 
 class Home extends React.Component {
   state = {
@@ -24,9 +25,8 @@ class Home extends React.Component {
     return (
 
 <div className="d-flex row">
-
-    <Sidenavbar Sidenavbar = {Sidenavbar} />
-
+    {/* <Sidenavbar Sidenavbar = {Sidenavbar} /> */}
+    <DropMenu DropMenu ={ DropMenu } />
   <div className="d-flex row">
   <div className="p-2">
   <div className="d-flex flex-row">

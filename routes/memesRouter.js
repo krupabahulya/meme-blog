@@ -1,8 +1,9 @@
 import { Router } from 'express';
-import { getAllMemes } from '../controllers/memes.js';
+import { getAllMemes,createMeme, getSingleMeme, updateMeme, deleteMeme } from '../controllers/memes.js';
 
 const memesRouter = Router();
 
-memesRouter.route('/').get(getAllMemes);
+memesRouter.route('/').get(getAllMemes).post(createMeme);
+memesRouter.route('/:id').get(getSingleMeme).put(updateMeme).delete(deleteMeme)
 
 export default memesRouter;

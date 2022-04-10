@@ -1,27 +1,26 @@
 import React from "react";
-import { client } from "./client";
+import axios from "axios";
 import Posts from "./Posts";
 import Sidenavbar from "./Sidenavbar";
 import DropMenu from "./Dropdown";
 
-class Home extends React.Component {
-  state = {
-    articles: [],
-  };
+const Home = () => {
+  const [memes, setMemes] = useState([]);
 
-  componentDidMount() {
-    client
-      .getEntries()
-      .then((response) => {
-        console.log(response);
-        this.setState({
-          articles: response.items,
-        });
+  useEffect(() => {
+    const getMeme = `http://localhost:3000/memes/`;
+    axios
+      .get(getMeme)
+      .then((res) => {
+        console.log(res);
+        setMemes(memes);
       })
-      .catch(console.error);
-  }
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+  
 
-  render() {
     return (
 
 <div className="d-flex row">
@@ -30,12 +29,12 @@ class Home extends React.Component {
   <div className="d-flex row">
   <div className="p-2">
   <div className="d-flex flex-row">
-    <Posts posts={this.state.articles} />
+    <Posts posts={memes} />
    </div>
 </div>
 </div>
 </div>
     );
   }
-}
+
 export default Home;

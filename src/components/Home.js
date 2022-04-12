@@ -29,7 +29,7 @@ const Home = () => {
   <div className="d-flex row">
   <div className="p-2">
   <div className="d-flex flex-row">
-    <Posts posts={memes} />
+  {memes.length>0 &&<Posts memes={memes} />}
    </div>
 </div>
 </div>

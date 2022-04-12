@@ -1,35 +1,32 @@
-import React from "react";
+import React, { useState, useEffect  } from "react";
 import axios from "axios";
 import Posts from "./Posts";
-import Sidenavbar from "./Sidenavbar";
 import DropMenu from "./Dropdown";
 
 const Home = () => {
   const [memes, setMemes] = useState([]);
 
   useEffect(() => {
-    const getMeme = `http://localhost:3000/memes/`;
+    const getMeme = `http://localhost:3001/memes/`;
     axios
       .get(getMeme)
       .then((res) => {
         console.log(res);
-        setMemes(memes);
-      })
+        setMemes(res.data);
+        })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-  
-
+  console.log(memes);
     return (
 
 <div className="d-flex row">
-    {/* <Sidenavbar Sidenavbar = {Sidenavbar} /> */}
     <DropMenu DropMenu ={ DropMenu } />
   <div className="d-flex row">
   <div className="p-2">
   <div className="d-flex flex-row">
-    <Posts posts={memes} />
+  {memes.length>0 &&<Posts memes={memes} />}
    </div>
 </div>
 </div>

@@ -1,11 +1,12 @@
 import React from "react";
 import Post from "./Post";
 
-const Posts = ({ posts }) => {
+const Posts = ({ memes }) => {
+  console.log('posts')
   return (
     <div className="d-flex p-2 flex-row justify-content-around flex-wrap">
-      {posts.map((article, index) => (
-        <Post article={article} key={index} />
+      {memes.map((memes, id) => (
+        <Post memes={memes} key={id} />
       ))}{" "}
       <div className="p-2"></div>
     </div>

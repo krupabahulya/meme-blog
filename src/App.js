@@ -3,6 +3,7 @@ import Layout from './components/Layout'
 import Home from './components/Home'
 import Meme from './components/MemeForm'
 import Contact from './components/Contact';
+import React from 'react';
 
 
 

@@ -12,7 +12,7 @@ function DropMenu() {
   return (
     <div className="App container">
     <DropdownButton
-      alignRight
+     // alignRight
       title="Select Category"
       id="dropdown-menu-align-right"
       onSelect={handleSelect}

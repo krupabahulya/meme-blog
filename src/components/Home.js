@@ -12,15 +12,13 @@ const Home = () => {
       .get(getMeme)
       .then((res) => {
         console.log(res);
-        setMemes(res);
-        console.log(memes);
-      })
+        setMemes(res.data);
+        })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-  
-
+  console.log(memes);
     return (
 
 <div className="d-flex row">
@@ -28,7 +26,7 @@ const Home = () => {
   <div className="d-flex row">
   <div className="p-2">
   <div className="d-flex flex-row">
-    <Posts posts={memes} />
+  {memes.length>0 &&<Posts memes={memes} />}
    </div>
 </div>
 </div>
